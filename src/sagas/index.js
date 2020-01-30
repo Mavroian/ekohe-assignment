@@ -3,7 +3,7 @@ import { fetchPeople } from "./fechAPI";
 
 function* getPeople() {
   const json = yield call(fetchPeople);
-  yield put({ type: "PEOPLE_RECEIVED", json: json.results });
+  yield put({ type: "PEOPLE_RECEIVED", json: json });
 }
 function* actionWatcher() {
   yield takeLatest("GET_PEOPLE", getPeople);
