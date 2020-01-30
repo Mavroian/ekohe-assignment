@@ -36,7 +36,13 @@ class Character extends Component {
         {this.state.showHomeworld ? (
           <div>
             <h2>{this.state.homeworld.name}</h2>
-            <h2>{this.state.homeworld.population}</h2>
+            <h2>
+              Pop:
+              {this.state.homeworld.population.replace(
+                /\B(?=(\d{3})+(?!\d))/g,
+                ","
+              )}
+            </h2>
           </div>
         ) : null}
       </div>
