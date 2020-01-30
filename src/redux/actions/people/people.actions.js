@@ -1,3 +1,3 @@
 export const getPeopleAction = () => ({
-  type: 'GET_PEOPLE',
+  type: "GET_PEOPLE"
 });
