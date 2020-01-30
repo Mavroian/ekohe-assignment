@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { getPeopleAction } from './redux/actions/people/people.actions'
+import { SearchBox } from "./components/search-box/search-box.component"
+import CharacterList from "./components/character-list/character-list.component"
+import Loading from "./components/loading/loading.component"
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      searchField: ""
+    }
+  }
 
-export default App;
+  componentDidMount() {
+    this.props.getPeople()
+  }
+
+
+  handleChange = (e) => this.setState({ searchField: e.target.value })
+
+  render() {
+    const { searchField } = this.state
+    const characters = this.props.characters
+    const filteredCharacters = characters.filter(character => {
+      return character.name.toLowerCase().includes(searchField.toLowerCase())
+    })
+    return (
+      <div className="App">
+        {
+          this.props.loading ?
+            (
+              <Loading />
+            ) :
+            (
+              <div>
+                <SearchBox
+                  handleChange={this.handleChange}
+                  placeHolder={"Search Star Wars Characters"}
+                />
+                <CharacterList characters={filteredCharacters} />
+              </div>
+            )
+        }
+
+      </div>
+    );
+  }
+
+}
+const mapDispatchToProps = {
+  getPeople: getPeopleAction,
+};
+
+const mapStateToProps = ({ characters: { people, loading } }) => ({
+  characters: people,
+  loading: loading
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
