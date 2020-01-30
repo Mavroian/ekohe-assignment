@@ -36,7 +36,7 @@ class App extends Component {
               handleChange={this.handleChange}
               placeHolder={"Search Star Wars Characters"}
             />
-            <CharacterList characters={filteredCharacters} />
+            <CharacterList characters={filteredCharacters.slice(0, 8)} />
           </div>
         )}
       </div>
