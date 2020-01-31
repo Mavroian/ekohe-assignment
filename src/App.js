@@ -28,8 +28,8 @@ class App extends Component {
     });
     return (
       <div className="App">
-        {this.props.loading ? (
-          <Loading />
+        {this.props.isLoading ? (
+          <Loading isLoading={this.props.isLoading} />
         ) : (
           <div>
             <SearchBox
@@ -47,9 +47,9 @@ const mapDispatchToProps = {
   getPeople: getPeopleAction
 };
 
-const mapStateToProps = ({ characters: { people, loading } }) => ({
+const mapStateToProps = ({ characters: { people, isLoading } }) => ({
   characters: people,
-  loading: loading
+  isLoading: isLoading
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
