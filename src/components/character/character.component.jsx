@@ -7,7 +7,7 @@ class Character extends Component {
     super();
     this.state = {
       homeworld: {},
-      showHomeworld: false
+      showHomeworld: false,
     };
   }
 
@@ -19,7 +19,9 @@ class Character extends Component {
       });
   }
   handleClick = () => {
-    this.setState({ showHomeworld: true });
+    this.setState((currentState)=>({ 
+      showHomeworld: !currentState.showHomeworld,
+    }));
   };
   render() {
     const { character, index } = this.props;
@@ -29,10 +31,14 @@ class Character extends Component {
           alt="character"
           src={`https://robohash.org/${index}?set=set2&size=180x180`}
         />
+
         <h1>{character.name}</h1>
         <h2>Height: {character.height}</h2>
         <h2>Gender: {character.gender}</h2>
-        <Button handleClick={this.handleClick} />
+
+        <Button 
+          handleClick={()=> this.handleClick()} 
+        />
         {this.state.showHomeworld ? (
           <div>
             <h2>{this.state.homeworld.name}</h2>
