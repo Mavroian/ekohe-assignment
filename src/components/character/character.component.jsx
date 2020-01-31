@@ -7,7 +7,7 @@ class Character extends Component {
     super();
     this.state = {
       homeworld: {},
-      showHomeworld: false,
+      showHomeworld: false
     };
   }
 
@@ -19,8 +19,8 @@ class Character extends Component {
       });
   }
   handleClick = () => {
-    this.setState((currentState)=>({ 
-      showHomeworld: !currentState.showHomeworld,
+    this.setState(currentState => ({
+      showHomeworld: !currentState.showHomeworld
     }));
   };
   render() {
@@ -36,10 +36,8 @@ class Character extends Component {
         <h2>Height: {character.height}</h2>
         <h2>Gender: {character.gender}</h2>
 
-        <Button 
-          handleClick={()=> this.handleClick()} 
-        />
-        {this.state.showHomeworld ? (
+        <Button handleClick={() => this.handleClick()} />
+        {this.state.showHomeworld && (
           <div>
             <h2>{this.state.homeworld.name}</h2>
             <h2>
@@ -50,7 +48,7 @@ class Character extends Component {
               )}
             </h2>
           </div>
-        ) : null}
+        )}
       </div>
     );
   }
