@@ -12,7 +12,7 @@ class Character extends Component {
   }
 
   componentDidMount() {
-    fetch(`${this.props.character.homeworld}`)
+    fetch(this.props.character.homeworld)
       .then(response => response.json())
       .then(homeworld => {
         this.setState({ homeworld: homeworld });
