@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import "./character.styles.css";
 import Button from "../button/button.component";
 
@@ -47,6 +48,9 @@ class Character extends Component {
                 ","
               )}
             </h2>
+            <Helmet>
+              <title>{character.name}</title>
+            </Helmet>
           </div>
         )}
       </div>
