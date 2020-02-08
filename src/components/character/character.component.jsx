@@ -11,19 +11,31 @@ class Character extends Component {
       showHomeworld: false
     };
   }
+  _isMounted = false;
+  async componentDidMount() {
+    this._isMounted = true;
 
-  componentDidMount() {
-    fetch(this.props.character.homeworld)
-      .then(response => response.json())
-      .then(homeworld => {
-        this.setState({ homeworld: homeworld });
-      });
+    try {
+      const responseJson = await fetch(
+        this.props.character.homeworld
+      ).then(response => response.json());
+      if (this._isMounted) {
+        this.setState({ homeworld: responseJson });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   handleClick = () => {
     this.setState(currentState => ({
       showHomeworld: !currentState.showHomeworld
     }));
   };
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   render() {
     const { character, index } = this.props;
     return (
