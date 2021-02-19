@@ -20,7 +20,7 @@
     "reselect": "^4.0.0"
   },
   "scripts": {
-    "start": "node server/server.js NODE_ENV='production'",
+    "start": "node server/server.js 'production'",
     "dev": "react-scripts start 'development'",
     "build": "react-scripts build",
     "test": "react-scripts test",
