@@ -14,10 +14,10 @@ class Character extends Component {
   _isMounted = false;
   async componentDidMount() {
     this._isMounted = true;
-
+    const planet = this.props.character.homeworld
     try {
       const responseJson = await fetch(
-        this.props.character.homeworld
+        `https://swapi-deno.azurewebsites.net/api/planets/${planet}`
       ).then(response => response.json());
       if (this._isMounted) {
         this.setState({ homeworld: responseJson });
@@ -50,6 +50,7 @@ class Character extends Component {
         <h2>Gender: {character.gender}</h2>
 
         <Button handleClick={() => this.handleClick()} />
+        {console.log(this.state.homeworld)}
         {this.state.showHomeworld && (
           <div>
             <h2>{this.state.homeworld.name}</h2>

@@ -22,7 +22,9 @@ class App extends Component {
 
   render() {
     const { searchField } = this.state;
+
     const characters = this.props.characters;
+    console.log(characters)
     const filteredCharacters = characters.filter(character => {
       return character.name.toLowerCase().includes(searchField.toLowerCase());
     });
