@@ -5,7 +5,6 @@ export const fetchPeople = async () => {
     let people = [];
     response = await axios("https://swapi-deno.azurewebsites.net/api/people")
       .then(response => {
-        console.log('banana', response)
         people = response.data;
         return response.data.count;
       })

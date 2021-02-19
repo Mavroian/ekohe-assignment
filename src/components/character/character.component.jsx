@@ -50,7 +50,6 @@ class Character extends Component {
         <h2>Gender: {character.gender}</h2>
 
         <Button handleClick={() => this.handleClick()} />
-        {console.log(this.state.homeworld)}
         {this.state.showHomeworld && (
           <div>
             <h2>{this.state.homeworld.name}</h2>
